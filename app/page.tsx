@@ -83,11 +83,7 @@ export default function Home() {
             onClick={() => handler()}
             disabled={loading || !input || input?.trim() === ""}
             startIcon={
-              loading ? (
-                <CircularProgress size={20} />
-              ) : (
-                <AutoAwesomeIcon size={20} />
-              )
+              loading ? <CircularProgress size={20} /> : <AutoAwesomeIcon />
             }
           >
             Correct
