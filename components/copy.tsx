@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { twMerge } from "tailwind-merge";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const Copy = ({ text }: { text: string }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -11,6 +11,7 @@ const Copy = ({ text }: { text: string }) => {
     <Button
       variant="outlined"
       color="success"
+      startIcon={<ContentCopyIcon />}
       onClick={() => {
         navigator.clipboard.writeText(text);
         setLoading(true);
