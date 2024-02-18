@@ -18,24 +18,7 @@ export async function runChat(msg: string) {
     maxOutputTokens: 2048,
   };
 
-  const safetySettings = [
-    {
-      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-  ];
+  //   const safetySettings = [];
 
   const parts = [
     {
@@ -49,7 +32,7 @@ export async function runChat(msg: string) {
   const result = await model.generateContent({
     contents: [{ role: "user", parts }],
     generationConfig,
-    safetySettings,
+    // safetySettings,
   });
 
   const response = result.response;
