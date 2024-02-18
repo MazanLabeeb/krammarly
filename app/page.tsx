@@ -9,8 +9,10 @@ import ClearAllIcon from "@mui/icons-material/ClearAll";
 import EditIcon from "@mui/icons-material/Edit";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import Presets from "@/components/presets";
 
 export default function Home() {
+  const [prompt, setPrompt] = useState<string | null>();
   const r = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
@@ -18,7 +20,7 @@ export default function Home() {
 
   const handler = async () => {
     setLoading(true);
-    runChat(input)
+    runChat(input, prompt)
       .then((res) => setOutput(res))
       .finally(() => setLoading(false));
   };
@@ -50,16 +52,18 @@ export default function Home() {
         Krammarly
       </Typography>
       <div className="mt-6">
+        <Presets value={prompt} setValue={setPrompt} />
         <TextField
           autoFocus
+          sx={{ mt: 2 }}
           inputRef={r}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.ctrlKey) handler();
+            if (e.key === "Enter" && !e.shiftKey) handler();
             if (e.key === "Escape" || (e.key === "Backspace" && e.ctrlKey))
               setInput("");
             if (e.key === "Tab") e.preventDefault();
             if (e.key === "Tab") setInput((prev) => prev + "  ");
-            if (e.key === "Enter" && e.ctrlKey) {
+            if (e.key === "Enter" && e.shiftKey) {
               setInput((prev) => prev + "\n");
             }
           }}
@@ -70,14 +74,13 @@ export default function Home() {
           fullWidth
           disabled={loading}
           rows={3}
-          maxRows={6}
           variant="outlined"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
 
         <br />
-        <div className="flex flex-row gap-3 mt-3 w-full">
+        <div className="flex flex-row gap-3 mt-3 w-full  flex-wrap">
           <Button
             variant="outlined"
             onClick={() => handler()}
