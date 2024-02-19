@@ -13,12 +13,13 @@ interface Props {
 
 export default function Presets({ value, setValue }: Props) {
   const [open, setOpen] = React.useState(
-    JSON.parse(window.localStorage.getItem("collapse-open") || "false")
+    // JSON.parse(window.localStorage.getItem("collapse-open") || "false")
+    false
   );
 
   const handlerToggle = () => {
     setOpen(!open);
-    window.localStorage.setItem("collapse-open", JSON.stringify(!open));
+    // window.localStorage.setItem("collapse-open", JSON.stringify(!open));
   };
 
   return (
