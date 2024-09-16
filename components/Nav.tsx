@@ -25,6 +25,10 @@ const pages = [
     label: "Proposal",
     href: "/proposal",
   },
+  {
+    label: "Calculator",
+    href: "/calculator",
+  },
 ];
 
 function ResponsiveAppBar() {
