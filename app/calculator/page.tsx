@@ -31,8 +31,9 @@ export default function Home() {
   const [outputFixed, setOutputFixed] = useState<string>("");
 
   const hourlyHandler = () => {
-    const totalHours = (input.balance || 0) / input.rate;
+    
     const paying = (input.balance || 0) * (100 / 105);
+    const totalHours = paying / input.rate;
     const receivable = paying - paying / 10;
     const tax = paying - receivable + (input.balance || 0) - paying;
 
