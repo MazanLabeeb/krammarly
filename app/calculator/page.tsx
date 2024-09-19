@@ -23,7 +23,7 @@ export default function Home() {
   const r3 = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [input, setInput] = useState<InputType>({
-    rate: 13,
+    rate: 15,
     balance: null,
   });
   const [fixInput, setFixInput] = useState<number | null>(null);
